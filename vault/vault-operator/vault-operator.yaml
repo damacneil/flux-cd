@@ -1,0 +1,16 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: vault
+  namespace: vault
+spec:
+  releaseName: vault
+  chart:
+    repository: https://kubernetes-charts.banzaicloud.com
+    name: banzaicloud-stable/vault-operator
+    version: 0.8.1
+  values:
+    replicCount: 1
+    etcdOperator:
+      enabled: false
+
