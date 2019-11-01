@@ -4,7 +4,7 @@ metadata:
   name: vault
   namespace: vault
 spec:
-  releaseName: vault
+  releaseName: banks-vault
   chart:
     repository: https://kubernetes-charts.banzaicloud.com
     name: banzaicloud-stable/vault

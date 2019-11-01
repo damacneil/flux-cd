@@ -4,7 +4,7 @@ metadata:
   name: vault
   namespace: vault
 spec:
-  releaseName: vault
+  releaseName: vault-operator
   chart:
     repository: https://kubernetes-charts.banzaicloud.com
     name: banzaicloud-stable/vault-operator
