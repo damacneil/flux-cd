@@ -1,7 +1,7 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: vault
+  name: vault-operator
   namespace: vault
 spec:
   releaseName: vault-operator

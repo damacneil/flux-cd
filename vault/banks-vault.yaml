@@ -1,7 +1,7 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: vault
+  name: banks-vault
   namespace: vault
 spec:
   releaseName: banks-vault
