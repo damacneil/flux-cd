@@ -14,7 +14,7 @@ spec:
     ingress:
       enabled: true
     hosts:
-     - vault.apps.dmacneil.co.uk
+      - vault.apps.dmacneil.co.uk
     annotations:
       kubernetes.io/ingress.class: nginx
       kubernetes.io/tls-acme: "true"
