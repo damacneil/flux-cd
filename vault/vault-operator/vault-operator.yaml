@@ -10,6 +10,11 @@ spec:
     name: banzaicloud-stable/vault-operator
     version: 0.8.1
   values:
+    enabled: true
+    image:
+      repository: banzaicloud/vault-operator
+      tag: 0.5.3
+      pullPolicy: IfNotPresent
     replicCount: 1
     etcdOperator:
       enabled: false

@@ -11,6 +11,10 @@ spec:
     version: 0.7.0
   values:
     replicCount: 3
+    image:
+      repository: vault
+      tag: 1.2.3
+      pullPolicy: IfNotPresent
     ingress:
       enabled: true
     hosts:
