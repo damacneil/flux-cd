@@ -5,7 +5,6 @@ metadata:
   namespace: vault
   annotations:
     flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: glob:master-*
 spec:
   releaseName: vault
   chart:
