@@ -1,8 +1,11 @@
+---
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: vault-operator
   namespace: vault
+  annotations:
+    fluxcd.io/automated: 'true'
 spec:
   releaseName: vault-operator
   chart:
