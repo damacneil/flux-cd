@@ -8,7 +8,7 @@ spec:
   chart:
     repository: https://kubernetes-charts.banzaicloud.com
     name: banzaicloud-stable/vault-operator
-    version: 0.8.1
+    version: 0.4.2
   values:
     enabled: true
     image:
