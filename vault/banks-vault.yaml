@@ -10,11 +10,10 @@ spec:
     name: banzaicloud-stable/vault
     version: 0.7.0
   values:
+    enabled: true
     replicCount: 3
     image:
-      repository: vault
-      tag: 1.2.3
-      pullPolicy: IfNotPresent
+      repository: "vault:1.2.3"
     ingress:
       enabled: true
     hosts:
