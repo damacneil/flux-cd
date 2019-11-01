@@ -3,6 +3,9 @@ kind: HelmRelease
 metadata:
   name: vault-operator
   namespace: vault
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: glob:master-*
 spec:
   releaseName: vault-operator
   chart:
