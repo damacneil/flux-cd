@@ -11,12 +11,12 @@ spec:
   chart:
     repository: https://kubernetes-charts.banzaicloud.com
     name: banzaicloud-stable/vault
-    version: 0.8.3
+    version: 0.8.1
   values:
     enabled: true
     replicCount: 3
     image:
-      repository: "vault:1.2.3"
+      repository: "vault:1.1.5"
     ingress:
       enabled: true
     hosts:
