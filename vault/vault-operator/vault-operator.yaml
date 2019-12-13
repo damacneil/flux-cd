@@ -16,7 +16,7 @@ spec:
     enabled: true
     image:
       repository: banzaicloud/vault-operator
-      tag: operator-leader-election
+      tag: 0.7.1
       pullPolicy: IfNotPresent
     replicCount: 1
     etcdOperator:
