@@ -16,7 +16,11 @@ spec:
     enabled: true
     replicCount: 3
     image:
+<<<<<<< HEAD
       repository: "vault:1.2.3"
+=======
+      repository: "vault:1.3.0-beta1"
+>>>>>>> ea8f72160a366d3ada1b852b16bb3b21ac9b45ab
     ingress:
       enabled: true
     hosts:
