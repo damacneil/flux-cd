@@ -14,13 +14,6 @@ spec:
       enabled: true
       image: "vault:1.2.3"
     server:
-      extraSecretEnvironmentVars:
-        - envName: AWS_ACCESS_KEY_ID
-          secretName: eks-creds
-          secretKey: AWS_ACCESS_KEY_ID
-        - envName: AWS_SECRET_ACCESS_KEY
-          secretName: eks-creds
-          secretKey: AWS_SECRET_ACCESS_KEY
       resources:
         requests:
           memory: 256Mi
@@ -39,10 +32,6 @@ spec:
             tls_disable = 1
             address = "[::]:8200"
             cluster_address = "[::]:8201"
-          }
-          seal "awskms" {
-            region     = "eu-west-1"
-            kms_key_id = "01ba51dd-6519-4e85-807d-5e755fbdfd4f"
           }
           storage "consul" {
             path = "vault"
