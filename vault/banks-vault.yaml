@@ -43,7 +43,7 @@ spec:
           tls_key_file: /vault/tls/server.key
       storage:
         consul:
-          path: "vault/"
+          path: "vault-banzaicloud/"
           address: "consul-consul-server:8500"
       telemtry:
         statsd_address: localhost:9125
