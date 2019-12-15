@@ -10,7 +10,7 @@ spec:
   releaseName: vault-operator
   chart:
     repository: https://kubernetes-charts.banzaicloud.com
-    name: banzaicloud-stable/vault-operator
+    name: vault-operator
     version: 0.4.2
   values:
     enabled: true
