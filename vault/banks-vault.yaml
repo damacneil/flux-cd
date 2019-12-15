@@ -16,7 +16,9 @@ spec:
     enabled: true
     replicCount: 3
     image:
-      repository: "vault:1.2.3"
+      repository: "vault"
+      tag: "1.2.3"
+      pullPolicy: IfNotPresent
     ingress:
       enabled: true
       hosts:
