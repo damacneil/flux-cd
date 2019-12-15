@@ -31,10 +31,10 @@ spec:
     - secretName: vault-tls
       hosts:
       - vault.apps.dmacneil.co.uk
-    persistence:
-      enabled: true
-      storageClass: nfs-client
-      size: 1G
+    #persistence:
+    #  ensabled: true
+    #  stsorageClass: nfs-client
+    #  sisze: 1G
     config:
       listener:
         tcp:
