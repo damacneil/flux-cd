@@ -49,6 +49,7 @@ spec:
           address: "consul-consul-server:8500"
       telemetry:
         statsd_address: localhost:9125
+      defaultStorage: {}
     externalConfig:
       policies:
       - name: allow_secrets
