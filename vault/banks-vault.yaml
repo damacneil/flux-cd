@@ -23,18 +23,18 @@ spec:
       enabled: true
       hosts:
       - vault.apps.dmacneil.co.uk
-    annotations:
-      kubernetes.io/ingress.class: nginx
-      kubernetes.io/tls-acme: "true"
-    tls:
-      #Secrets must be manually created in the namespace.
-    - secretName: vault-tls
-      hosts:
-      - vault.apps.dmacneil.co.uk
-    persistence:
-      ensabled: true
-      storageClass: nfs-client
-      sisze: 1G
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+        certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+      tls:
+        - secretName: bank-vault-tls
+          hosts:
+            - vault.apps.dmacneil.co.uk
+    #persistence:
+    #  enabled: true
+    #  storageClass: nfs-client
+    #  size: 1G
     vault:
       config:
         listener:
