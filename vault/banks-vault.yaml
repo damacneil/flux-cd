@@ -17,7 +17,7 @@ spec:
     replicCount: 3
     image:
       repository: "vault"
-      tag: "1.3.0"
+      tag: "1.3.1"
       pullPolicy: IfNotPresent
     ingress:
       enabled: true
@@ -28,9 +28,9 @@ spec:
         nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
         certmanager.k8s.io/cluster-issuer: letsencrypt-prod
       tls:
-        - secretName: bank-vault-tls
-          hosts:
-            - vault.apps.dmacneil.co.uk
+      - secretName: bank-vault-tls
+        hosts:
+        - vault.apps.dmacneil.co.uk
     #persistence:
     #  enabled: true
     #  storageClass: nfs-client
