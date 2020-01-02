@@ -1,0 +1,17 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: vault-webhook
+  namespace: vault
+spec:
+  releaseName: vault-webhook
+  chart:
+    name: vault-secrets-webhook
+    version: 0.5.4
+  values:
+    configMapMutation: true
+    volumes:
+      - name: vault-tls
+        secret:
+          secretName: vault-tls
+
