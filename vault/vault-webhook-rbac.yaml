@@ -9,6 +9,11 @@ roleRef:
   name: system:auth-delegator
 subjects:
 - kind: ServiceAccount
-  name: vault-vault-secrets-webhook # Change it if you don't use the defaults when you install it via Helm
+  name: vault-auth # Change it if you don't use the defaults when you install it via Helm
   namespace: vault # Change it if you don't use the defaults when you install it via Helm
-
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vault-auth
+  namespace: vault
