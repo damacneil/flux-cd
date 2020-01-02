@@ -6,6 +6,7 @@ metadata:
 spec:
   releaseName: vault-webhook
   chart:
+    repository: https://kubernetes-charts.banzaicloud.com
     name: vault-secrets-webhook
     version: 0.5.4
   values:
