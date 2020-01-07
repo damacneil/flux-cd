@@ -4,7 +4,7 @@ metadata:
   name: vault
   namespace: vault
   annotations:
-    fluxcd.io/ignore: true
+    flux.weave.works/ignore: true
 spec:
   releaseName: vault
   chart:
