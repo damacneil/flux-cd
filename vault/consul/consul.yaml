@@ -3,6 +3,8 @@ kind: HelmRelease
 metadata:
   name: consul
   namespace: vault
+  annotations:
+    fluxcd.io/ignore: true
 spec:
   releaseName: consul
   chart:
