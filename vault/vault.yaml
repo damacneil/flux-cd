@@ -3,6 +3,8 @@ kind: HelmRelease
 metadata:
   name: vault
   namespace: vault
+  annotations:
+    flux.weave.works/ignore: true
 spec:
   releaseName: vault
   chart:
@@ -41,8 +43,7 @@ spec:
       ingress:
         enabled: true
         annotations:
-          kubernetes.io/ingress.class: "nginx"
-          nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+          kubernetes.io/ingress.class: "traefik"
           certmanager.k8s.io/cluster-issuer: letsencrypt-prod
         tls:
           - secretName: vault-tls
@@ -51,3 +52,8 @@ spec:
         hosts:
           - host: vault.apps.dmacneil.co.uk
             paths: ["/"]
+      extraVolumes:
+        - type: configMap
+          name: vault-auth-methods
+          path: /vault/config/auth-config.yaml
+
