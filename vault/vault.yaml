@@ -53,5 +53,5 @@ spec:
       extraVolumes:
         - type: configMap
           name: vault-auth-methods
-          path: /vault/config/auth-config.yaml
+          path: /vault/config/
 
