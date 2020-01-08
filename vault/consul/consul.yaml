@@ -3,8 +3,6 @@ kind: HelmRelease
 metadata:
   name: consul
   namespace: vault
-  annotations:
-    flux.weave.works/ignore: true
 spec:
   releaseName: consul
   chart:
