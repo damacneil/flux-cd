@@ -11,7 +11,7 @@ spec:
   chart:
     git: https://github.com/munnerz/kube-plex
     path: charts/kube-plex
-    ref: 0.2.4
+    ref: master
   values:
     image:
       repository: plexinc/pms-docker
