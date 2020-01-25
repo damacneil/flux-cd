@@ -9,9 +9,9 @@ metadata:
 spec:
   releaseName: plex
   chart:
-    repository: https://github.com/munnerz/kube-plex/charts/kube-plex
-    name: kube-plex
-    version: 0.2.4
+    git: https://github.com/munnerz/kube-plex
+    path: charts/kube-plex
+    ref: 0.2.4
   values:
     image:
       repository: plexinc/pms-docker
