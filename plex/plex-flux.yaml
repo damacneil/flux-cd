@@ -7,9 +7,9 @@ metadata:
     flux.weave.works/automated: "true"
     flux.weave.works/tag.chart-image: semver:~1.0.3
 spec:
-  releaseName: ae-sso
+  releaseName: plex
   chart:
-    repository: https://github.com/munnerz/kube-plex
+    repository: https://github.com/munnerz/kube-plex/charts/kube-plex
     name: kube-plex
     version: 0.2.4
   values:
