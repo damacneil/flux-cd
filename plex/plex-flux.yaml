@@ -30,6 +30,7 @@ spec:
       annotations:
         certmanager.k8s.io/cluster-issuer: letsencrypt-prod
       tls:
-        - hosts: plex.apps.dmacneil.co.uk
+        - hosts: 
+          - plex.apps.dmacneil.co.uk
           secretName: plex-tls
 
