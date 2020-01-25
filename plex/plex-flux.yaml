@@ -1,0 +1,35 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: plex
+  namespace: plex
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~1.0.3
+spec:
+  releaseName: ae-sso
+  chart:
+    repository: https://github.com/munnerz/kube-plex
+    name: kube-plex
+    version: 0.2.4
+  values:
+    image:
+      repository: plexinc/pms-docker
+      tag: 1.16.0.1226-7eb2c8f6f
+      pullPolicy: IfNotPresent
+    claimToken: xxx
+    persistence:
+      data:
+        claimName: k3s-plex-data
+      config:
+        claimName: k3s-plex-config
+      transcode:
+        claimName: k3s-plex-transcode
+    ingress:
+      enabled: true
+      annotations:
+        "certmanager.k8s.io/cluster-issuer: letsencrypt-prod"
+      tls:
+        - hosts: plex.apps.dmacneil.co.uk
+          secretName: plex-tls
+
