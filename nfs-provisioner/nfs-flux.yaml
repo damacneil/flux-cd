@@ -15,7 +15,7 @@ spec:
   values:
     nfs:
       server: 192.168.1.2
-      path: /raid/kubernetes/nfs-volumes
+      path: /var/kubernetes/volumes
     storageClass:
       reclaimPolicy: Retain
     serviceAccountName:
