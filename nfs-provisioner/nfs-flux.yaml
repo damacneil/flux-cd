@@ -1,0 +1,22 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: nfs-client-provisioner
+  namespace: kube-system
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~1.2.8
+spec:
+  releaseName: nfs-client-provisioner
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/         
+    name: nfs-client-provisioner
+    version: 1.2.8
+  values:
+    nfs:
+      server: 192.168.1.2
+      path: /raid/kubernetes/nfs-volumes
+    storageClass:
+      reclaimPolicy: Retain
+    serviceAccountName:
+      nfs-provisioner-sa
