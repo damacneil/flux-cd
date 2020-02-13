@@ -31,10 +31,10 @@ spec:
         certmanager.io/cluster-issuer: letsencrypt-prod
         kubernetes.io/ingress.class: traefik
       hosts:
-        - host: plex.apps.dmacneil.co.uk
-          paths: ["/"]
+      - host: plex.apps.dmacneil.co.uk
+        paths: ["/"]
       tls:
-        - secretName: plex-tls
-          hosts: 
-          - plex.apps.dmacneil.co.uk
+      - secretName: plex-tls
+        hosts: 
+        - plex.apps.dmacneil.co.uk
 
