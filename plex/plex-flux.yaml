@@ -32,7 +32,7 @@ spec:
         kubernetes.io/ingress.class: traefik
       hosts:
         - host: plex.apps.dmacneil.co.uk
-          paths: ['/']
+          paths: ["/"]
       tls:
         - secretName: plex-tls
           hosts: 
