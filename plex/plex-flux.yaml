@@ -33,7 +33,8 @@ spec:
       hosts:
         - plex.apps.dmacneil.co.uk
       tls:
-        - hosts: 
+        - secretName: plex-tls
+          hosts: 
           - plex.apps.dmacneil.co.uk
-          secretName: plex-tls
+          - paths: ['/']
 
