@@ -33,7 +33,9 @@ spec:
       tls:
       - hosts: 
         - plex.apps.dmacneil.co.uk
+        - plex.home.int
         secretName: plex-tls
       hosts:
       - plex.apps.dmacneil.co.uk
+      - plex.home.int
 
