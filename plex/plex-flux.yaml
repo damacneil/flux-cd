@@ -34,4 +34,6 @@ spec:
       - hosts: 
         - plex.apps.dmacneil.co.uk
         secretName: plex-tls
+      hosts:
+      - plex.apps.dmacneil.co.uk
 
