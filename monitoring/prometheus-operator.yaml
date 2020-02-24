@@ -1,0 +1,116 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: prometheus-operator
+  namespace: monitoring
+  annotations:
+    flux.weave.works/automated: "false"
+    flux.weave.works/tag.grafana: semver:~6
+    flux.weave.works/tag.alertmanager.alertmanagerSpec: glob:v0.16.*
+    flux.weave.works/tag.prometheus.prometheusSpec: glob:v2.*.*
+spec:
+  releaseName: prometheus-operator
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: prometheus-operator
+    version: 6.17.2
+  values:
+    prometheusOperator:
+      image:
+        repository: quay.io/coreos/prometheus-operator
+        tag: v0.33.0
+    alertmanager:
+      alertmanagerSpec:
+        image:
+          repository: quay.io/prometheus/alertmanager
+          tag: v0.16.2
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: nfs-client
+              resources:
+                requests:
+                  storage: 1Gi
+      ingress:
+        enabled: true
+        hosts: [alertmanager.apps.dmacneil.co.uk]
+        annotations:
+          kubernetes.io/ingress.class: "traefik"
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+    grafana:
+      image:
+        repository: grafana/grafana
+        tag: 6.4.3
+      persistence:
+        enabled: true
+        storageClassName: "nfs-client"
+        accessModes:
+        - ReadWriteOnce
+        size: 1Gi
+      env:
+        GF_EXPLORE_ENABLED: true
+      ingress:
+        hosts: [grafana.apps.dmacneil.co.uk]
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: "traefik"
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+      grafana.ini:
+        server:
+          root_url: https://grafana.apps.dmacneil.co.uk
+        auth.generic_oauth:
+          enabled: false
+        paths:
+          data: /var/lib/grafana/data
+          logs: /var/log/grafana
+          plugins: /var/lib/grafana/plugins
+          provisioning: /etc/grafana/provisioning
+        analytics:
+          check_for_updates: true
+        log:
+          mode: console
+        grafana_net:
+          url: https://grafana.net
+      sidecar:
+        dashboards:
+          enabled: true
+    coreDns:
+      enabled: true
+    kubeDns:
+      enabled: false
+    kubeEtcd:
+      enabled: false
+    prometheus:
+      ingress:
+        enabled: true
+        hosts: [prometheus.apps.dmacneil.co.uk]
+        annotations:
+          kubernetes.io/ingress.class: "traefik"
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+      prometheusSpec:
+        image:
+          repository: quay.io/prometheus/prometheus
+          tag: v2.9.1
+        retention: 7d
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: nfs-client
+              resources:
+                requests:
+                  storage: 5Gi
+        externalLabels:
+          cluster: k3s
+        additionalScrapeConfigs:
+              additionalServiceMonitors:
+      - name: fluxmetrics
+        endpoints:
+        - interval: 30s
+          path: /metrics
+          port: http
+        namespaceSelector:
+          any: true
+        selector:
+          matchLabels:
+            app: flux
