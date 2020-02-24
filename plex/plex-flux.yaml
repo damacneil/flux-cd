@@ -44,9 +44,7 @@ spec:
           nodeSelectorTerms:
           - matchExpressions:
             - key: kubernetes.io/hostname
-              operator: In
+              operator: NotIn
               values:
-                - k3s-node-01.home.int
-                - k3s-node-02.home.int
-                - k3s-node-03.home.int
+                - k3s-controller-01
 
