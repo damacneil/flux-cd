@@ -13,3 +13,13 @@ spec:
     global:
       enabled: true
       image: "consul:1.6.1"
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: NotIn
+              values:
+                - k3s-controller-01
+
