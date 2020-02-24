@@ -46,7 +46,7 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - k3s-node-01
-                - k3s-node-02
-                - k3s-node-03
+                - k3s-node-01.home.int
+                - k3s-node-02.home.int
+                - k3s-node-03.home.int
 
