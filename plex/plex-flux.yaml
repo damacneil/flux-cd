@@ -45,6 +45,7 @@ spec:
           - matchExpressions:
             - key: kubernetes.io/hostname
               operator: In
+              values:
                 - k3s-node-01
                 - k3s-node-02
                 - k3s-node-03
