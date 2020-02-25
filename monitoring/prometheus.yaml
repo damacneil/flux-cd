@@ -86,6 +86,9 @@ spec:
       ingress:
         enabled: true
         hosts: [prometheus.apps.dmacneil.co.uk]
+        tls:
+          - hosts:
+            - prometheus.apps.dmacneil.co.uk
         annotations:
           kubernetes.io/ingress.class: "traefik"
           cert-manager.io/cluster-issuer: letsencrypt-prod
