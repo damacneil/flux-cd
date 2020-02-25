@@ -15,6 +15,13 @@ spec:
     name: prometheus-operator
     version: 8.9.2
   values:
+    server:
+      resources:
+        requests:
+          memory: 1000Mi
+          cpu: 25m
+        limits:
+          memory: 2000Mi
     prometheusOperator:
       createCustomResources: true
     alertmanager:
@@ -56,10 +63,6 @@ spec:
           kubernetes.io/ingress.class: "traefik"
           cert-manager.io/cluster-issuer: letsencrypt-prod
       grafana.ini:
-        server:
-          root_url: https://grafana.apps.dmacneil.co.uk
-        auth.generic_oauth:
-          enabled: false
         paths:
           data: /var/lib/grafana/data
           logs: /var/log/grafana
@@ -71,12 +74,11 @@ spec:
           mode: console
         grafana_net:
           url: https://grafana.net
-      sidecar:
-        dashboards:
-          enabled: true
     coreDns:
       enabled: true
-    kubeDns:
+    kubeControllerManager:
+      enabled: false
+    kubeScheduler:
       enabled: false
     kubeEtcd:
       enabled: false
@@ -110,8 +112,6 @@ spec:
               resources:
                 requests:
                   storage: 10Gi
-        externalLabels:
-          cluster: k3s
         additionalScrapeConfigs: 
         - job_name: 'netdata-scrape'
           metrics_path: '/api/v1/allmetrics'
