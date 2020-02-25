@@ -5,26 +5,20 @@ metadata:
   name: prometheus-operator
   namespace: monitoring
   annotations:
-    flux.weave.works/automated: "false"
-    flux.weave.works/tag.grafana: semver:~6
-    flux.weave.works/tag.alertmanager.alertmanagerSpec: glob:v0.16.*
-    flux.weave.works/tag.prometheus.prometheusSpec: glob:v2.*.*
+    fluxcd.io/ignore: false
+    fluxcd.io/automated: "true"
+    fluxcd.io/tag.grafana: semver:~6
 spec:
   releaseName: prometheus-operator
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: prometheus-operator
-    version: 6.17.2
+    version: 8.9.2
   values:
     prometheusOperator:
-      image:
-        repository: quay.io/coreos/prometheus-operator
-        tag: v0.33.0
+      createCustomResources: true
     alertmanager:
       alertmanagerSpec:
-        image:
-          repository: quay.io/prometheus/alertmanager
-          tag: v0.16.2
         storage:
           volumeClaimTemplate:
             spec:
@@ -41,7 +35,9 @@ spec:
     grafana:
       image:
         repository: grafana/grafana
-        tag: 6.4.3
+        tag: 6.6.2
+      deploymentStrategy:
+        type: Recreate
       persistence:
         enabled: true
         storageClassName: "nfs-client"
@@ -50,6 +46,9 @@ spec:
         size: 1Gi
       env:
         GF_EXPLORE_ENABLED: true
+        GF_RENDERING_SERVER_URL: http://grafana-image-renderer:8081/render
+        GF_RENDERING_CALLBACK_URL: http://prometheus-operator-grafana/
+        GF_LOG_FILTERS: rendering:debug
       ingress:
         hosts: [grafana.apps.dmacneil.co.uk]
         enabled: true
