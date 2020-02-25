@@ -88,9 +88,20 @@ spec:
           kubernetes.io/ingress.class: "traefik"
           cert-manager.io/cluster-issuer: letsencrypt-prod
       prometheusSpec:
-        image:
-          repository: quay.io/prometheus/prometheus
-          tag: v2.9.1
+#        image:
+#          repository: quay.io/prometheus/prometheus
+#          tag: v2.9.1
+        ruleSelector: {}
+        ruleNamespaceSelector: {}
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelector: {}
+        serviceMonitorNamespaceSelector: {}
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelector: {}
+        podMonitorNamespaceSelector: {}
+        podMonitorSelectorNilUsesHelmValues: false
+        enableAdminAPI: true
+        serviceMonitorSelectorNilUsesHelmValues: false
         retention: 7d
         storageSpec:
           volumeClaimTemplate:
@@ -101,15 +112,27 @@ spec:
                   storage: 10Gi
         externalLabels:
           cluster: k3s
-        additionalScrapeConfigs: []
-      additionalServiceMonitors:
-      - name: fluxmetrics
-        endpoints:
-        - interval: 30s
-          path: /metrics
-          port: http
-        namespaceSelector:
-          any: true
-        selector:
-          matchLabels:
-            app: flux
+        additionalScrapeConfigs: 
+        - job_name: 'netdata-scrape'
+          metrics_path: '/api/v1/allmetrics'
+          params:
+              # format: prometheus | prometheus_all_hosts
+              # You can use `prometheus_all_hosts` if you want Prometheus to set the `instance` to your hostname instead of IP
+            format: [prometheus]
+          honor_labels: true
+          static_configs:
+          - targets:
+            - k3s-node-01.home.int:19999
+            - k3s-node-02.home.int:19999
+            - k3s-node-03.home.int:19999
+#      additionalServiceMonitors:
+#      - name: fluxmetrics
+#        endpoints:
+#        - interval: 30s
+#          path: /metrics
+#          port: http
+#        namespaceSelector:
+#          any: true
+#        selector:
+#          matchLabels:
+#            app: flux
